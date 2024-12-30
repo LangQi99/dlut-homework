@@ -4,4 +4,4 @@
 
 ## 目录
 
-- [线性代数](./LinearAlgebra/README.md)
+- [线性代数](./LinearAlgebra)
