@@ -23,17 +23,3 @@ fprintf('样本均值: %.4f\n', sample_mean);
 fprintf('总体均值: %.4f\n', true_mean);
 fprintf('样本方差: %.4f\n', sample_var);
 fprintf('总体方差: %.4f\n', true_var);
-
-% 绘制直方图
-figure;
-histogram(X, 30, 'Normalization', 'probability');
-hold on;
-% 绘制理论密度函数
-x = linspace(0, max(X), 100);
-y = lambda * exp(-lambda * x);
-plot(x, y, 'r-', 'LineWidth', 1.5);
-title('指数分布E(3)的模拟结果');
-xlabel('x');
-ylabel('概率密度');
-legend('模拟数据', '理论密度');
-grid on; 
