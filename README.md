@@ -7,4 +7,3 @@
 - [线性代数](./LinearAlgebra)
 - [概率论与数理统计](./ProbabilityTheory)
 
-This project is licensed under CC BY-NC-SA 4.0. See the [LICENSE](./LICENSE) file for details.
