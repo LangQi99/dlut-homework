@@ -1,44 +1,31 @@
-% 基于问题1和2，讨论当Y = 2X^n + 3，n分别取0,1,5,20,50时，协方差Cov(X,Y)的变化，进而讨论X和Y的相关系数的变化。
+% 3. 基于问题1和2，讨论当Y = 2X^n + 3，n分别取0,1,5,20,50时，协方差Cov(X,Y)的变化，进而讨论X和Y的相关系数的变化。
 
+% 加载数据
+load('data.mat');
 
-% 加载p1的结果
-load('p1_results.mat');
-
-% 设置不同的n值
+% 定义n值
 n_values = [0, 1, 5, 20, 50];
-num_n = length(n_values);
 
-% 初始化结果数组
-cov_results = zeros(num_n, 1);
-corr_results = zeros(num_n, 1);
+% 计算不同n值下的协方差和相关系数
+fprintf('\n=== 不同n值下的协方差和相关系数分析 ===\n');
+fprintf('----------------------------------------------------\n');
+fprintf('n值              协方差          相关系数        函数关系\n');
+fprintf('----------------------------------------------------\n');
 
-% 计算每个n值下的协方差和相关系数
-for i = 1:num_n
-    n = n_values(i);
+for n = n_values
     Y = 2 * X.^n + 3;
-    cov_matrix = cov(X, Y);
-    cov_results(i) = cov_matrix(1,2);  % 取协方差矩阵的(1,2)元素
-    corr_results(i) = corr(X, Y);
+    Cov_XY = cov(X, Y);
+    Corr_XY = corrcoef(X, Y);
+
+    if abs(Cov_XY(1,2)) > 1000
+        fprintf('%-16d %-15.4e %-10.4f Y=2X^%d+3\n', n, Cov_XY(1,2), Corr_XY(1,2), n);
+    else
+        fprintf('%-16d %-15.4f %-10.4f Y=2X^%d+3\n', n, Cov_XY(1,2), Corr_XY(1,2), n);
+    end
 end
 
-% 显示结果
-fprintf('不同n值下的协方差和相关系数：\n');
-for i = 1:num_n
-    fprintf('n = %d:\n', n_values(i));
-    fprintf('  Cov(X,Y) = %.4f\n', cov_results(i));
-    fprintf('  Corr(X,Y) = %.4f\n', corr_results(i));
-end
-
-% 绘制结果图
-figure;
-subplot(2,1,1);
-plot(n_values, cov_results, 'o-');
-title('协方差随n的变化');
-xlabel('n值');
-ylabel('协方差');
-
-subplot(2,1,2);
-plot(n_values, corr_results, 'o-');
-title('相关系数随n的变化');
-xlabel('n值');
-ylabel('相关系数'); 
+fprintf('----------------------------------------------------\n');
+fprintf('分析：\n');
+fprintf('1. 当n=0时，Y为常数，协方差和相关系数均为0\n');
+fprintf('2. 当n=1时，Y与X呈线性关系，相关系数为1\n');
+fprintf('3. 随着n增大，X和Y的非线性关系增强，相关系数逐渐减小\n');
