@@ -1,0 +1,11 @@
+Original stack:
+Top element: 30
+Total elements: 60
+
+Copied stack:
+Total elements: 120
+
+After modifications:
+Original top: 30
+Copy top: 40
+Total elements: 130
